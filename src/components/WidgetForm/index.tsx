@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import { CloseButton } from "../CloseButton";
+import bugImageUrl from '../../assets/bug.svg';
+import ideaImageUrl from '../../assets/idea.svg';
+import thoughtImageUrl from '../../assets/thought.svg';
 
-import bugImageUrl from '../assets/bug.svg';
-import ideaImageUrl from '../assets/idea.svg';
-import thoughtImageUrl from '../assets/thought.svg';
+import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
 import { FeedbackTypeStep } from "./Steps/FeedbackTypeStep";
 
 export const feedbackTypes = {
