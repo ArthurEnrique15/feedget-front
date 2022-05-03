@@ -1,13 +1,16 @@
 import html2canvas from "html2canvas";
-import { Camera } from "phosphor-react";
+import { Camera, Trash } from "phosphor-react";
 import { useState } from "react";
 import { Loading } from "../Loading";
 
 interface ScreenshotButtonProps {
-  onScreenshotTook: (screenshot: string) => void;
+  // função para retornar o print para o componente pai (FeedbackContentStep)
+  onScreenshotTook: (screenshot: string | null) => void;
+  // print da foto usado para que o ScreenshotButton saiba se já existe uma foto e com base nisso mostre um preview do print
+  screenshot: string | null;
 }
 
-export function ScreenshotButton({ onScreenshotTook }: ScreenshotButtonProps) {
+export function ScreenshotButton({ screenshot, onScreenshotTook }: ScreenshotButtonProps) {
   const [isTakingScreenshot, setIsTakingScreenshot] = useState(false);
 
   async function handleTakeScreenshot() {
@@ -21,11 +24,23 @@ export function ScreenshotButton({ onScreenshotTook }: ScreenshotButtonProps) {
     setIsTakingScreenshot(false);
   }
 
-  // if (screenshot) {
-  //   return (
-  //     <p>Foto</p>
-  //   )
-  // }
+  if (screenshot) {
+    return (
+      <button
+        type="button"
+        className="p-1 w-10 h-10 rounded-md border-transparent flex justify-end items-end text-zinc-400 hover:text-zinc-100 transition-colors"
+        onClick={() => onScreenshotTook(null)}
+        // uma chave pra indicar que estamos incluindo js dentro do html e outra chave para indicar que é um objeto
+        style={{
+          backgroundImage: `url(${screenshot})`,
+          backgroundPosition: 'right bottom',
+          backgroundSize: 180
+        }}
+      >
+        <Trash weight="fill" />
+      </button>
+    )
+  }
 
   return (
     <button
