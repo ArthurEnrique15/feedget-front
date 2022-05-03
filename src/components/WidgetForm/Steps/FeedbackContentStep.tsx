@@ -18,7 +18,7 @@ export function FeedbackContentStep({
         <button 
           type="button" 
           className="top-5 left-5 absolute text-zinc-400 hover:text-zinc-100"
-          onClick={() => onRequestFeedbackRestart()}
+          onClick={onRequestFeedbackRestart}
         >
           <ArrowLeft weight="bold" className="w-4 h-4"/>
         </button>
